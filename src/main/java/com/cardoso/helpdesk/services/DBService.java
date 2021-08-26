@@ -6,11 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cardoso.helpdesk.domain.Cliente;
-import com.cardoso.helpdesk.domain.enums.Chamado;
+import com.cardoso.helpdesk.domain.Chamado;
 import com.cardoso.helpdesk.domain.enums.Perfil;
 import com.cardoso.helpdesk.domain.enums.Prioridade;
 import com.cardoso.helpdesk.domain.enums.Status;
-import com.cardoso.helpdesk.domain.enums.Tecnico;
+import com.cardoso.helpdesk.domain.Tecnico;
 import com.cardoso.helpdesk.repositories.ChamadoRepository;
 import com.cardoso.helpdesk.repositories.ClienteRepository;
 import com.cardoso.helpdesk.repositories.TecnicoRepository;

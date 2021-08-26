@@ -30,7 +30,7 @@ public enum Perfil {
 				return x;
 			}
 		}
-		throw new IllegalArgumentException("Status invalido");
+		throw new IllegalArgumentException("Perfil invalido");
 	}
 	
 	

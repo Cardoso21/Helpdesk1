@@ -1,4 +1,4 @@
-package com.cardoso.helpdesk.domain.enums;
+package com.cardoso.helpdesk.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -11,7 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.cardoso.helpdesk.domain.Cliente;
+import com.cardoso.helpdesk.domain.enums.Prioridade;
+import com.cardoso.helpdesk.domain.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
