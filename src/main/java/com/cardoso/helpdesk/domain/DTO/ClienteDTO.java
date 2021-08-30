@@ -1,13 +1,9 @@
 package com.cardoso.helpdesk.domain.DTO;
 
-import com.cardoso.helpdesk.domain.Tecnico;
+import com.cardoso.helpdesk.domain.Cliente;
 import com.cardoso.helpdesk.domain.enums.Perfil;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.FetchType;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -15,7 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class TecnicoDTO implements Serializable {
+public class ClienteDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     protected Integer id;
@@ -32,12 +28,12 @@ public class TecnicoDTO implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate dataCriaçao = LocalDate.now();
 
-    public TecnicoDTO() {
+    public ClienteDTO() {
         super();
         addPerfis(Perfil.CLIENTE);
     }
 
-    public TecnicoDTO(Tecnico obj) {
+    public ClienteDTO(Cliente obj) {
         this.id = obj.getId();
         this.nome = obj.getNome();
         this.cpf = obj.getCpf();

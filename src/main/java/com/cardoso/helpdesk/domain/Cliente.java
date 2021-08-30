@@ -2,10 +2,12 @@ package com.cardoso.helpdesk.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import com.cardoso.helpdesk.domain.DTO.ClienteDTO;
 import com.cardoso.helpdesk.domain.enums.Perfil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -18,7 +20,7 @@ public class Cliente extends Pessoa{
 	@OneToMany(mappedBy = "cliente")
 	private List<Chamado> chamados = new ArrayList<>();
 
-	public Cliente() {	
+	public Cliente(Cliente objDTO) {
 		super();
 		addPerfis(Perfil.CLIENTE);
 		
@@ -28,6 +30,19 @@ public class Cliente extends Pessoa{
 		super(id, nome, cpf, email, senha);
 		addPerfis(Perfil.CLIENTE);
 		
+	}
+	public Cliente(ClienteDTO obj) {
+		this.id = obj.getId();
+		this.nome = obj.getNome();
+		this.cpf = obj.getCpf();
+		this.email = obj.getEmail();
+		this.senha = obj.getSenha();
+		this.perfis = obj.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
+		this.dataCriaçao = obj.getDataCriaçao() ;
+	}
+
+	public Cliente() {
+
 	}
 
 	public List<Chamado> getChamados() {
