@@ -20,7 +20,7 @@ public enum Status {
 		return descriçao;
 	}
 	
-	public static Status toEnum(Status cod) {
+	public static Status toEnum(Integer cod) {
 		if (cod==null) {
 			return null;
 		}
