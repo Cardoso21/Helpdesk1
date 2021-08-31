@@ -4,41 +4,50 @@ package com.cardoso.helpdesk.domain.DTO;
 import com.cardoso.helpdesk.domain.Chamado;
 import com.cardoso.helpdesk.domain.Cliente;
 import com.cardoso.helpdesk.domain.Tecnico;
+import com.cardoso.helpdesk.domain.enums.Prioridade;
+import com.cardoso.helpdesk.domain.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+
 public class ChamadoDTO implements Serializable {
     private static final long serialVersionUID = 1L;
-    private Integer id;
 
+    private Integer id;
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dtAbertura = LocalDate.now();
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dtFechamento;
-    private Integer prioridade;
-    private Integer status;
+    private Prioridade prioridade;
+    private Status status;
+    @NotNull(message = "Campo obrigatorio!!")
     private String titulo;
+    @NotNull(message = "Campo obrigatorio!!")
     private String observaçoes;
-    private String NomeTecnico;
-    private String NomeCliente;
+    private Tecnico tecnico;
+    private Cliente cliente;
+    private String nomeTecnico;
+    private String nomeCliente;
 
     public ChamadoDTO() {
         super();
     }
 
     public ChamadoDTO(Chamado obj) {
-        this.id = obj.getId();
+                this.id = obj.getId();
         this.dtAbertura = obj.getDtAbertura();
         this.dtFechamento = obj.getDtFechamento();
-        this.prioridade = obj.getPrioridade().getCodigo();
-        this.status = obj.getStatus().getCodigo();
+        this.prioridade = obj.getPrioridade();
+        this.status = obj.getStatus();
         this.titulo = obj.getTitulo();
         this.observaçoes = obj.getObservaçoes();
-        NomeTecnico = obj.getTecnico().getNome();
-        NomeCliente = obj.getCliente().getNome();
+        this.tecnico = obj.getTecnico();
+        this.cliente = obj.getCliente();
+        this.nomeTecnico = obj.getTecnico().getNome();
+        this.nomeCliente = obj.getCliente().getNome();
     }
 
     public Integer getId() {
@@ -65,19 +74,19 @@ public class ChamadoDTO implements Serializable {
         this.dtFechamento = dtFechamento;
     }
 
-    public Integer getPrioridade() {
+    public Prioridade getPrioridade() {
         return prioridade;
     }
 
-    public void setPrioridade(Integer prioridade) {
+    public void setPrioridade(Prioridade prioridade) {
         this.prioridade = prioridade;
     }
 
-    public Integer getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
@@ -97,21 +106,35 @@ public class ChamadoDTO implements Serializable {
         this.observaçoes = observaçoes;
     }
 
+    public Tecnico getTecnico() {
+        return tecnico;
+    }
 
+    public void setTecnico(Tecnico tecnico) {
+        this.tecnico = tecnico;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 
     public String getNomeTecnico() {
-        return NomeTecnico;
+        return nomeTecnico;
     }
 
     public void setNomeTecnico(String nomeTecnico) {
-        NomeTecnico = nomeTecnico;
+        this.nomeTecnico = nomeTecnico;
     }
 
     public String getNomeCliente() {
-        return NomeCliente;
+        return nomeCliente;
     }
 
     public void setNomeCliente(String nomeCliente) {
-        NomeCliente = nomeCliente;
+        this.nomeCliente = nomeCliente;
     }
 }
