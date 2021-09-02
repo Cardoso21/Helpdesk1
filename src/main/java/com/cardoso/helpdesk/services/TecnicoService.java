@@ -8,6 +8,7 @@ import com.cardoso.helpdesk.repositories.TecnicoRepository;
 import com.cardoso.helpdesk.services.exceptions.DataIntegrityViolationException;
 import com.cardoso.helpdesk.services.exceptions.ObjectnotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +21,8 @@ public class TecnicoService {
     private TecnicoRepository repository;
     @Autowired
     private PessoaRepository pessoaRepository;
+    @Autowired
+    private BCryptPasswordEncoder encoder;
 
     public Tecnico findById(Integer id){
         Optional<Tecnico> obj = repository.findById(id);
@@ -32,6 +35,7 @@ public class TecnicoService {
 
     public Tecnico create(TecnicoDTO objDTO) {
         objDTO.setId(null);
+        objDTO.setSenha(encoder.encode(objDTO.getSenha()));
         validaPorCpfEEmail(objDTO);
         Tecnico newObj = new Tecnico(objDTO);
         return repository.save(newObj);

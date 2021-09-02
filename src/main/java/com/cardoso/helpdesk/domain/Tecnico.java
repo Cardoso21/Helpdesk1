@@ -1,17 +1,14 @@
 package com.cardoso.helpdesk.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import com.cardoso.helpdesk.domain.DTO.TecnicoDTO;
+import com.cardoso.helpdesk.domain.enums.Perfil;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-
-import com.cardoso.helpdesk.domain.Chamado;
-import com.cardoso.helpdesk.domain.DTO.TecnicoDTO;
-import com.cardoso.helpdesk.domain.Pessoa;
-import com.cardoso.helpdesk.domain.enums.Perfil;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 public class Tecnico extends Pessoa {
@@ -49,7 +46,8 @@ public class Tecnico extends Pessoa {
 	public void setChamados(List<Chamado> chamados) {
 		this.chamados = chamados;
 	}
-	
-	
 
+
+    public void addPerfil(Perfil admin) {
+    }
 }
